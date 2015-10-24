@@ -1,0 +1,70 @@
+//
+   Created by guntupv on 10/19/15.
+
+block content
+    template(name="forms")
+#page-wrapper(ng-controller='newUserController')
+    .row
+        .col-lg-12
+            .panel.panel-default
+                .panel-body
+                    form.form-horizontal(role="form", ng-submit="registerNewUser()")
+                        .row
+                            .col-lg-6
+                                    .form-group
+                                        label.col-sm-3.control-label First Name:
+                                        .col-sm-9
+                                            input#firstName.form-control(type="text", name="firstName", required='', ng-model='newUser.firstName')
+                                    .form-group
+                                        label.col-sm-3.control-label Last Name:
+                                        .col-sm-9
+                                            input#lastName.form-control(type="text", name="lastName", required='', ng-model='newUser.lastName')
+                                    .form-group
+                                        label.col-sm-3.control-label Sex:
+                                        .col-sm-9
+                                            .form-group#radioGroup
+                                                .radio
+                                                    label
+                                                        input#Male(type="radio", name="sex", value="Male", ng-model='newUser.sex', required='')
+                                                        | Male
+                                                .radio
+                                                    label
+                                                        input#Female(type="radio", name="sex", value="Female", ng-model='newUser.sex', required='')
+                                                        | Female
+                                                .radio
+                                                    label
+                                                        input#Unkown(type="radio", name="sex", value="Unknown", ng-model='newUser.sex', required='')
+                                                        | Unknown
+                                    .form-group
+                                        label.col-sm-3.control-label Address Line 1:
+                                        .col-sm-9
+                                            input#addressLine1.form-control(type="text", name="addressLine1", required='', ng-model='newUser.address.addressLine1')
+                                    .form-group
+                                        label.col-sm-3.control-label Address Line 2:
+                                        .col-sm-9
+                                            input#addressLine2.form-control(type="text", name="addressLine2", ng-model='newUser.address.addressLine2')
+                                    .form-group
+                                        label.col-sm-3.control-label City:
+                                        .col-sm-9
+                                            input#city.form-control(type="text", name="city", required='', ng-model='newUser.address.city')
+
+                                    .form-group
+                                        label.col-sm-3.control-label(for="state") State:
+                                        .col-sm-9
+                                            select.form-control#state(name='state', ng-model='newUser.address.state', required='')
+                                               include ./includes/states.jade
+
+                                    .form-group
+                                        label.col-sm-3.control-label Zip:
+                                        .col-sm-9
+                                            input#zip.form-control(type="text", name="zip", required='', ng-model='newUser.address.zip')
+                                    .form-group.text-center
+                                        .col-sm-offset-2.col-sm-10
+                                            input.btn.btn-primary.btn-lg(type="submit", name="submit")
+                        // /.col-lg-6 (nested)
+                    // /.row (nested)
+                // /.panel-body
+            // /.panel
+        // /.col-lg-12
+    // /.row
+// /#page-wrapper
