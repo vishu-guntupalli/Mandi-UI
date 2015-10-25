@@ -7,7 +7,8 @@ var express = require('express'),
   routes = require('./routes'),
   api = require('./routes/api'),
   http = require('http'),
-  path = require('path');
+  path = require('path'),
+  request = require('request');
 
 var app = module.exports = express();
 
@@ -52,6 +53,20 @@ app.get('/api/name', api.name);
 //Post function
 app.post('/mandiService/newUserRegistration', function(req,res){
    console.log(req.body.newUser);
+});
+
+app.post('/mandiService/userSignUp', function(req,res){
+    var newUser = req.body.newUser;
+    var vault = {vault: { userId: newUser.userName,
+                          password: newUser.userPassword,
+                          emailId: newUser.emailID }};
+    console.log(JSON.stringify(vault));
+
+    request.post('http://localhost:8080/public/saveregistrationinfo', {form: JSON.stringify(vault)}, function(err, res, body){
+       if(err)
+         console.log(err);
+    });
+
 });
 
 // redirect all others to the index (HTML5 history)

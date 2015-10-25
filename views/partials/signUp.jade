@@ -1,0 +1,49 @@
+//
+   Created by guntupv on 10/25/15.
+
+block content
+   template(name="forms")
+#page-wrapper(ng-controller='signUpController')
+   .row
+      .col-lg-12
+         .panel.panel-default
+            .panel-body
+               form.form-horizontal(role="form", ng-submit="signUpUser()", name="signUpForm")
+                  .row
+                     .col-lg-6
+                        .form-group
+                           label.col-sm-3.control-label User Name:
+                           .col-sm-9(ng-class="{'has-error': signUpForm.userName.$error.minlength && signUpForm.userName.$touched}")
+                              input#userName.form-control(type="text", name="userName", ng-required='true', ng-model='newUser.userName', ng-minlength="5", ng-maxlength="15")
+                              .text-danger(ng-show="signUpForm.userName.$error.minlength && signUpForm.userName.$touched")
+                                 p User Name must be between 5 and 15 characters
+
+                        .form-group
+                           label.col-sm-3.control-label Email ID:
+                           .col-sm-9(ng-class="{'has-error': signUpForm.emailID.$error.email && signUpForm.emailID.$touched}")
+                              input#emailID.form-control(type="email", name="emailID", ng-required='true', ng-model='newUser.emailID', placeholder="user@email.com")
+                              .text-danger(ng-show="signUpForm.emailID.$error.email && signUpForm.emailID.$touched")
+                                 p Please enter a valid email address
+
+                        .form-group
+                           label.col-sm-3.control-label Password:
+                           .col-sm-9
+                              input#userPassword.form-control(type="password", name="userPassword", ng-required='true', ng-model='newUser.userPassword')
+
+                        .form-group
+                            label.col-sm-3.control-label Confirm Password:
+                            .col-sm-9
+                               input#confirmPassword.form-control(type="password", name="confirmPassword", ng-required='true', ng-model='newUser.confirmPassword', compare-to="newUser.userPassword")
+                               .text-danger(ng-show="signUpForm.confirmPassword.$invalid && signUpForm.confirmPassword.$touched")
+                                  p The passwords must match
+
+                        .form-group.text-center
+                           .col-sm-offset-2.col-sm-10
+                              input.btn.btn-primary.btn-lg(type="submit", name="submit", value="Sign Up")
+                  // /.col-lg-6 (nested)
+               // /.row (nested)
+            // /.panel-body
+         // /.panel
+      // /.col-lg-12
+   // /.row
+// /#page-wrapper
