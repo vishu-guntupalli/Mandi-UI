@@ -57,15 +57,21 @@ app.post('/mandiService/newUserRegistration', function(req,res){
 
 app.post('/mandiService/userSignUp', function(req,res){
     var newUser = req.body.newUser;
-    var vault = {vault: { userId: newUser.userName,
-                          password: newUser.userPassword,
-                          emailId: newUser.emailID }};
+    var vault =  { userId: newUser.userName,
+                   password: newUser.userPassword,
+                   emailId: newUser.emailID };
+
     console.log(JSON.stringify(vault));
 
-    request.post('http://localhost:8080/public/saveregistrationinfo', {form: JSON.stringify(vault)}, function(err, res, body){
-       if(err)
-         console.log(err);
-    });
+    request({
+              method : 'POST',
+              uri : 'http://localhost:8080/public/saveregistrationinfo',
+              json : vault
+            },
+            function(err, res, body) {
+                if(err)
+                    console.log(err);
+            });
 
 });
 
