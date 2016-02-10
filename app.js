@@ -4,11 +4,11 @@
  */
 
 var express = require('express'),
-  routes = require('./routes'),
-  api = require('./routes/api'),
-  http = require('http'),
-  path = require('path'),
-  request = require('request');
+    routes = require('./routes'),
+    api = require('./routes/api'),
+    http = require('http'),
+    path = require('path'),
+    request = require('request');
 
 var app = module.exports = express();
 
@@ -63,14 +63,16 @@ app.post('/mandiService/userSignUp', function(req,res){
 
     console.log(JSON.stringify(vault));
 
+    const uri = 'http://localhost:8080/public/saveregistrationinfo';
     request({
               method : 'POST',
-              uri : 'http://localhost:8080/public/saveregistrationinfo',
+              uri : uri,
               json : vault
             },
             function(err, res, body) {
-                if(err)
-                    console.log(err);
+                if(!err){
+                   res.json(body);
+                }
             });
 
 });
